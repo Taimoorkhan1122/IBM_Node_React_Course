@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>React Page</title>
+  </head>
+  <!-- Load React API -->
+  <script
+    crossorigin
+    src="https://unpkg.com/react@17/umd/react.production.min.js"
+  ></script>
+  <!-- Load React DOM -->
+  <script
+    crossorigin
+    src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"
+  ></script>
+  <!-- Load Babel Compiler -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      class MyComp extends React.Component {
+        // super();
+        // creating state without constructor method
+        state = {
+          name: "Taimoor",
+          age: 21,
+        };
+        // by using the below syntax we don't need to bind methods with state anymore
+        // Update State Method
+        updateState = () => {
+          this.setState((prevState) => ({
+            ...prevState,
+            age: (prevState.age += 1),
+          }));
+        };
+
+        render() {
+          this.setState((data) => console.log(data));
+          return (
+            <div>
+              <h1>This is my {this.props.data}</h1>
+              <h1>My name is {this.state.name}</h1>
+              <h1>My age is {this.state.age}</h1>
+              <button onClick={this.updateState}>Update</button>
+            </div>
+          );
+        }
+      }
+      ReactDOM.render(
+        <MyComp data="My Component" />,
+        document.getElementById("root")
+      );
+    </script>
+  </body>
+</html>
